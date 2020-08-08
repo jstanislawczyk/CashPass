@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+
+    /* General Options */
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./build",
+    "rootDir": "./",
+    "lib": [
+      "ES6",
+      "dom"
+    ],
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    /* Module Resolution Options */
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "mocha"
+    ],
+
+    /* Source Map Options */
+    "inlineSourceMap": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Advanced Options */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
