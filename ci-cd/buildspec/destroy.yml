@@ -1,0 +1,30 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - PROJECT_DIR=$(pwd)
+      - cd $PROJECT_DIR/ci-cd/buildspec/scripts
+      - chmod +x ./get-workspace.sh
+      - ./get-workspace.sh
+      - cd /usr/bin
+      - curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+      - unzip terraform.zip
+  pre_build:
+    commands:
+      - echo Destroy started on `date`
+  build:
+    commands:
+      # Get SSH keys
+      - cd $PROJECT_DIR/terraform/modules/ec2/ssh-keys
+      - aws s3 cp s3://cash-pass-ssh-keys/$WORKSPACE . --recursive
+      # Destroy microservices
+      # Destroy main infrastructure
+      - cd $PROJECT_DIR/terraform/environment/infrastructure
+      - make -f ../../../Makefile init_workspace workspace=$WORKSPACE key=infrastructure
+      - make -f ../../../Makefile terraform-auto command=destroy workspace=$WORKSPACE key=infrastructure
+  post_build:
+    commands:
+      - echo Destroy completed on `date`
+      - echo "Workspace =" $WORKSPACE

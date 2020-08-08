@@ -1,0 +1,42 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - PROJECT_DIR=$(pwd)
+      - cd $PROJECT_DIR/ci-cd/buildspec/scripts
+      - chmod +x ./get-workspace.sh
+      - ./get-workspace.sh
+      - cd /usr/bin
+      - curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+      - unzip terraform.zip
+  pre_build:
+    commands:
+      - echo Build started on `date`
+      # Run tests
+  build:
+    commands:
+      # Generate SSH keys
+      - cd $PROJECT_DIR/terraform/modules/ec2/ssh-keys
+      - chmod +x ./generate-ssh.sh
+      - ./generate-ssh.sh $WORKSPACE
+      # Build main infrastructure
+      - cd $PROJECT_DIR/terraform/environment/infrastructure
+      - make -f ../../../Makefile init_workspace workspace=$WORKSPACE key=infrastructure
+      - make -f ../../../Makefile terraform-auto command=apply workspace=$WORKSPACE key=infrastructure
+      # Build and deploy lambdas
+      - cd $PROJECT_DIR/ci-cd/buildspec/scripts
+      - chmod +x ./build-node-lambdas.sh
+      - ./build-node-lambdas.sh $PROJECT_DIR
+      # Build microservices
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo "Workspace =" $WORKSPACE
+reports:
+  TestsReport:
+    files:
+      - '**/*'
+    file-format: JunitXml
+    base-directory: 'reports/'
