@@ -3,13 +3,13 @@ import {IsInt, IsNotEmpty, IsPositive} from 'class-validator';
 export class LambdaResponse {
 
   @IsNotEmpty()
-  public readonly body: object | string;
+  public readonly body: Record<string, unknown> | string;
 
   @IsInt()
   @IsPositive()
   public readonly statusCode: number;
 
-  constructor(body: object | string, statusCode: number) {
+  constructor(body: Record<string, unknown> | string, statusCode: number) {
     this.body = body;
     this.statusCode = statusCode;
   }

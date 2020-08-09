@@ -46,7 +46,7 @@ describe('Index', () => {
   it('should catch transaction service error', async () => {
     // Arrange
     const expectedResponse: LambdaResponse = new LambdaResponse('TransactionService error', 409);
-    const errorThrown: object = {
+    const errorThrown: Record<string, unknown> = {
       code: 409,
       message: 'TransactionService error',
     };
