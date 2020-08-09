@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "compile": "tsc",
-    "unit-test": "npm run compile && mocha './build/src/*/*.spec.js'"
+    "unit-test": "npm run compile && mocha './build/src/**/*.spec.js'"
   },
   "author": "Jakub Stanislawczyk",
   "license": "ISC",
