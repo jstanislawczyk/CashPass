@@ -1,8 +1,8 @@
 import {handler} from './index';
 import {expect, use} from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import * as chaiAsPromised from 'chai-as-promised';
 import * as sinon from 'sinon';
-import sinonChai from 'sinon-chai';
+import * as sinonChai from 'sinon-chai';
 import {SinonSandbox, SinonStub} from 'sinon';
 import {TransactionService} from './service/transaction-service';
 import {LambdaResponse} from './model/lambda-response';
@@ -13,7 +13,7 @@ use(chaiAsPromised);
 
 describe('Index', () => {
 
-  const event: object = {
+  const event: Record<string, unknown> = {
     test: 123,
   };
 

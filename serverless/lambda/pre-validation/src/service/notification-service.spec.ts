@@ -1,11 +1,11 @@
 import * as AWS from 'aws-sdk';
 import * as AWSMock from 'aws-sdk-mock';
 import {expect, use} from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import * as chaiAsPromised from 'chai-as-promised';
 import {afterEach, beforeEach, describe, it} from 'mocha';
 import * as sinon from 'sinon';
 import {SinonSandbox, SinonStub} from 'sinon';
-import sinonChai from 'sinon-chai';
+import * as sinonChai from 'sinon-chai';
 import {NotificationService} from './notification-service';
 import {Transaction} from '../model/transaction';
 
@@ -43,6 +43,6 @@ describe('NotificationService', () => {
     await notificationService.sendNotification(transaction);
 
     // Assert
-    expect(snsStub).not.to.be.calledOnce;
+    expect(snsStub).to.be.calledOnce;
   });
 });

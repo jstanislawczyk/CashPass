@@ -1,8 +1,9 @@
 import {Transaction} from '../model/transaction';
-import SNS, {PublishResponse} from 'aws-sdk/clients/sns';
+import {PublishResponse} from 'aws-sdk/clients/sns';
 import {LambdaError} from '../model/lambda-error';
 import {PromiseResult} from 'aws-sdk/lib/request';
 import {AWSError} from 'aws-sdk';
+import {SNS} from 'aws-sdk';
 
 export class NotificationService {
 
