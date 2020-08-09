@@ -75,14 +75,14 @@ describe('NotificationService', () => {
     expect(snsStub).to.be.calledOnce;
     expect(snsPublishArgs.Message).to.be.eql(transaction.toString());
     expect(snsPublishArgs.TopicArn).to.be.eql('TestTopic');
-    expect(consoleLogStub).not.to.be.called;
+    expect(consoleLogStub).to.not.be.called;
   });
 
   it('should call SNS publish with empty topic if SNS_TOPIC_ARN is not provided', async () => {
     // Arrange
     const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
 
-    process.env.SNS_TOPIC_ARN = '';
+    delete process.env.SNS_TOPIC_ARN;
 
     // Act
     await notificationService.sendNotification(transaction);
