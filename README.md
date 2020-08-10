@@ -17,7 +17,7 @@ Simple AWS payment system
 * Install Terraform `https://learn.hashicorp.com/terraform/getting-started/install.html`
 * Linux or Mac should be preferred but if you want to use Windows, please install Cygwin (with Makefile support) `https://www.cygwin.com/`
 
-# Payment system repository
+# Setup
 
 ## AWS Cli
 Install AWS CLI, it's required https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
