@@ -24,7 +24,7 @@ export class NotificationService {
     } catch (error) {
       console.log(`Error publishing message to SNS. Topic: ${snsTopic}. Message: ${message}`, error);
 
-      throw (new LambdaError(error.message, 500));
+      throw new LambdaError(error.message, 500);
     }
   }
 
