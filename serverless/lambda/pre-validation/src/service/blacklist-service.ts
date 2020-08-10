@@ -22,6 +22,7 @@ export class BlacklistService {
 
     const blacklistedAccountsResult: PromiseResult<BatchGetItemOutput, AWSError> =
       await this.documentClient.batchGet(getBlacklistedAccountsParams).promise();
+
     const blacklistedAccounts: ItemList = blacklistedAccountsResult.Responses
       ? blacklistedAccountsResult.Responses[tableName]
       : [];

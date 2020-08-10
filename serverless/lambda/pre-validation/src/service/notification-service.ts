@@ -4,7 +4,9 @@ import {LambdaError} from '../model/lambda-error';
 import {PromiseResult} from 'aws-sdk/lib/request';
 import {AWSError} from 'aws-sdk';
 import {SNS} from 'aws-sdk';
+import {Service} from 'typedi';
 
+@Service()
 export class NotificationService {
 
   public async sendNotification(transaction: Transaction): Promise<void> {
