@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "compile": "tsc",
-    "unit-test": "npm run compile && mocha './build/src/**/*.spec.js'"
+    "unit-test": "npm run compile && mocha './build/src/**/*.spec.js'",
+    "unit-test-pipeline": "npm run compile && mocha './build/src/**/*.spec.js' --reporter mocha-junit-reporter --reporter-options mochaFile=../../../reports/pre-validation/unit-tests.xml",
+    "component-test": "npm run compile && mocha './build/test/**/*.spec.js' --timeout 5000",
+    "component-test-pipeline": "npm run compile && mocha './build/test/**/*.spec.js' --timeout 5000 --reporter mocha-junit-reporter --reporter-options mochaFile=../../../reports/pre-validation/component-tests.xml"
   },
   "author": "Jakub Stanislawczyk",
   "license": "ISC",
@@ -19,6 +22,7 @@
     "@types/sinon-chai": "^3.2.4",
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
+    "mocha-junit-reporter": "^2.0.0",
     "aws-sdk": "^2.656.0",
     "aws-sdk-mock": "^5.1.0",
     "chai": "^4.2.0",
