@@ -12,6 +12,9 @@
 serverless/lambda/*/node_modules/*
 serverless/lambda/*/build/*
 
+# Reports
+reports/**/*
+
 # Logs
 logs
 *.log
