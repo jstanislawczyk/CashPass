@@ -7,6 +7,7 @@ import {SinonSandbox, SinonStub} from 'sinon';
 import {TransactionService} from './service/transaction-service';
 import {LambdaResponse} from './model/lambda-response';
 import {Transaction} from './model/transaction';
+import {LambdaError} from './model/lambda-error';
 
 use(sinonChai);
 use(chaiAsPromised);
@@ -46,10 +47,7 @@ describe('Index', () => {
   it('should catch transaction service error', async () => {
     // Arrange
     const expectedResponse: LambdaResponse = new LambdaResponse('TransactionService error', 409);
-    const errorThrown: Record<string, unknown> = {
-      code: 409,
-      message: 'TransactionService error',
-    };
+    const errorThrown: LambdaError = new LambdaError('TransactionService error', 409);
 
     processTransactionStub.throws(errorThrown);
 
