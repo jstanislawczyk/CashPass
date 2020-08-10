@@ -53,6 +53,22 @@ describe('LambdaPusherService', () => {
     expect(lambdaArgs.Payload).to.be.eql(transaction.toString());
   });
 
+  it('should rethrow error if function name is empty string', async () => {
+    // Arrange
+    const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
+
+    process.env.TRANSACTION_LAMBDA_NAME = '';
+
+    // Act
+    const result: Promise<void> = lambdaPusherService.passTransactionToLambda(transaction);
+
+    // Assert
+    await expect(result).to.eventually.be
+      .rejectedWith(Error, 'Expected uri parameter to have length >= 1, but found "" for params.FunctionName');
+
+    expect(lambdaStub).to.not.be.called;
+  });
+
   it('should provide empty string if transaction lambda name is not provided', async () => {
     // Arrange
     const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
@@ -69,7 +85,7 @@ describe('LambdaPusherService', () => {
     expect(lambdaStub).to.not.be.called;
   });
 
-  it('should catch Lambda exception', async () => {
+  it('should catch and rethrow Lambda exception', async () => {
     // Arrange
     const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
 
