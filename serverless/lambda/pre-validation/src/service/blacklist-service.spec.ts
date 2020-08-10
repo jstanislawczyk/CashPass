@@ -14,7 +14,7 @@ import {LambdaError} from '../model/lambda-error';
 use(sinonChai);
 use(chaiAsPromised);
 
-describe('LambdaPusherService', () => {
+describe('BlacklistService', () => {
 
   let sandbox: SinonSandbox;
   let dynamoDbClientStub: SinonStub;

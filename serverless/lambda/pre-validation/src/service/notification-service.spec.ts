@@ -95,7 +95,7 @@ describe('NotificationService', () => {
     expect(snsPublishArgs.TopicArn).to.be.empty;
   });
 
-  it('should catch and handle SNS exception', async () => {
+  it('should catch and handle SNS error', async () => {
     // Arrange
     const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
 

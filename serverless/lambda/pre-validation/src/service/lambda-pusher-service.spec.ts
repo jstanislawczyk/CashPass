@@ -85,17 +85,17 @@ describe('LambdaPusherService', () => {
     expect(lambdaStub).to.not.be.called;
   });
 
-  it('should catch and rethrow Lambda exception', async () => {
+  it('should catch and rethrow Lambda error', async () => {
     // Arrange
     const transaction: Transaction = new Transaction('SENDER', 'RECEIVER');
 
-    lambdaStub.rejects(new Error('Lambda exception'));
+    lambdaStub.rejects(new Error('Lambda error'));
 
     // Act
     const result: Promise<void> = lambdaPusherService.passTransactionToLambda(transaction);
 
     // Assert
-    await expect(result).to.eventually.be.rejectedWith(Error, 'Lambda exception');
+    await expect(result).to.eventually.be.rejectedWith(Error, 'Lambda error');
 
     const lambdaArgs: Record<string, string> = lambdaStub.firstCall.args[0];
 
