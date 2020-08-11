@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+
+    /* General Options */
+    "outDir": "build",
+    "rootDir": "./",
+    "lib": ["es6"],
+    "target": "es6",
+    "declaration": true,
+
+    /* Module Options */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
+
+    /* Experimental Options */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    /* Source Map Options */
+    "inlineSourceMap": true,
+
+    /* Strict Options */
+    "alwaysStrict": true,
+
+    /* Additional Check Options */
+    "noImplicitAny": true
+  }
+}

@@ -8,6 +8,14 @@
 .settings/
 *.sublime-workspace
 
+# Build
+serverless/lambda/*/node_modules/*
+serverless/lambda/*/build/*
+serverless/artifacts/*
+
+# Reports
+reports/**/*
+
 # Logs
 logs
 *.log
