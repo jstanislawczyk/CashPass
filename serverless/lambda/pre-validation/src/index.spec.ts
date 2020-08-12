@@ -58,19 +58,4 @@ describe('Index', () => {
     expect(processTransactionStub).to.be.calledOnce;
     expect(response).to.be.eql(expectedResponse);
   });
-
-  it('should catch transaction service error', async () => {
-    // Arrange
-    const expectedResponse: LambdaResponse = new LambdaResponse('TransactionService error', 500);
-    const errorThrown: LambdaError = new LambdaError('TransactionService error', undefined);
-
-    processTransactionStub.throws(errorThrown);
-
-    // Act
-    const response: LambdaResponse = await handler(event);
-
-    // Assert
-    expect(processTransactionStub).to.be.calledOnce;
-    expect(response).to.be.eql(expectedResponse);
-  });
 });
